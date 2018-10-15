@@ -32,6 +32,7 @@ public class ORMAnnotationUtil {
     public static String getColumnName(Field field) {
         Column column = field.getAnnotation(Column.class);
         if (column == null) {
+            //获取字段名称
             return field.getName().toLowerCase();
         }
         return column.value();
