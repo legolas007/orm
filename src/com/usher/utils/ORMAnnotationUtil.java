@@ -38,6 +38,19 @@ public class ORMAnnotationUtil {
         return column.value();
     }
 
+    /**
+     * 从类中查询主键的列
+     * @param cls
+     * @return
+     */
+    public static Field findIdField(Class<?> cls) {
+        for (Field f : cls.getDeclaredFields()) {
+            if (isId(f)) {
+                return f;
+            }
+        }
+        return null;
+    }
     public static boolean isId(Field field) {
         Column column = field.getAnnotation(Column.class);
         if (column != null) {

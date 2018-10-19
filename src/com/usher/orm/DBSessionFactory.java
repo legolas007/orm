@@ -73,9 +73,17 @@ public class DBSessionFactory {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
+            //多行数据处理
+            List<T> list = listResultHandler(tClass, resultSet);
+            statement.close();
+            return list;
+        }
+
+        private <T> List<T> listResultHandler(Class<T> tClass, ResultSet resultSet) throws SQLException, IllegalAccessException, InstantiationException {
             List<T> list = new ArrayList<>();
 
             T obj = null;
+            Field[] fs = tClass.getDeclaredFields();
             while (resultSet.next()) {
                 //实例化实体类对象
                 obj = tClass.newInstance();
@@ -99,8 +107,34 @@ public class DBSessionFactory {
                 //将实体类添加到list
                 list.add(obj);
             }
-            statement.close();
             return list;
+        }
+
+        private <T> T oneResultHandler(Class<T> tClass, ResultSet resultSet) throws SQLException, IllegalAccessException, InstantiationException {
+
+            T obj = null;
+            Field[] fs = tClass.getDeclaredFields();
+            while (resultSet.next()) {
+                //实例化实体类对象
+                obj = tClass.newInstance();
+
+                //读取指定字段的数据注入到实体类属性
+                for (Field f : fs) {
+                    //可访问性
+                    f.setAccessible(true);
+                    Class<?> type = f.getType();
+                    if (type == String.class) {
+                        f.set(obj, resultSet.getString(ORMAnnotationUtil.getColumnName(f)));
+                    } else if (type == int.class || type == Integer.class) {
+                        f.set(obj, resultSet.getInt(ORMAnnotationUtil.getColumnName(f)));
+                    } else if (type == double.class || type == Double.class) {
+                        f.set(obj, resultSet.getDouble(ORMAnnotationUtil.getColumnName(f)));
+                    } else if (type == Date.class) {
+                        f.set(obj, resultSet.getDate(ORMAnnotationUtil.getColumnName(f)));
+                    }
+                }
+            }
+            return obj;
         }
 
         public int save(Object object) throws SQLException, IllegalAccessException {
@@ -174,7 +208,7 @@ public class DBSessionFactory {
                     continue;
                 }
                 //非主键
-                updateColumns.append(ORMAnnotationUtil.getColumnName(f) + "=?");
+                updateColumns.append(ORMAnnotationUtil.getColumnName(f)).append("=?");
                 if (i != len - 1) {
                     updateColumns.append(",");
                 }
@@ -217,6 +251,48 @@ public class DBSessionFactory {
 
             return rows;
         }
+
+        public <T> T getById(Class<T> tClass, Object id) throws SQLException, InstantiationException, IllegalAccessException {
+            Field idField = ORMAnnotationUtil.findIdField(tClass);
+            String where = ORMAnnotationUtil.getColumnName(idField) + "=";
+
+            if (idField.getType() == String.class) {
+                where += "'" + id + "'";
+            } else {
+                where += id;
+            }
+
+            //select * from tb where {id} = ?
+            String sql = String.format("select * from %s where %s",
+                    ORMAnnotationUtil.getTableName(tClass),
+                    where);
+            System.out.println("Find By Id SQL: " + sql);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            //单行数据
+            T t = oneResultHandler(tClass, resultSet);
+            statement.close();
+            return t;
+
+        }
+
+        public int delete(Class cls, Object objectId) throws SQLException {
+            Field idField = ORMAnnotationUtil.findIdField(cls);
+            String where = ORMAnnotationUtil.getColumnName(idField) + "=";
+
+            if (String.class == objectId.getClass()) {
+                where += "'" + objectId + "'";
+            } else {
+                where += objectId;
+            }
+
+            Statement statement = connection.createStatement();
+            int rows = statement.executeUpdate("delete from " + ORMAnnotationUtil.getTableName(cls) +" where " + where);
+
+            statement.close();
+            return rows;
+        }
         /**
          * 关闭连接
          */
@@ -246,7 +322,10 @@ public class DBSessionFactory {
         user.setNickname("usher");
         user.setPhone("323232");
 
-        System.out.println(session.update(user));
+        //User user1 = session.getById(User.class, "1");
+        System.out.println(session.delete(User.class, "1"));
+        //System.out.println(session.update(user));
+        //System.out.println(user1);
 
     }
 
