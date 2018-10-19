@@ -6,14 +6,9 @@ import com.usher.utils.ORMAnnotationUtil;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.sql.*;
+import java.util.*;
 import java.util.Date;
-import java.util.List;
-import java.util.Properties;
 
 /**
  * @Author: Usher
@@ -108,8 +103,55 @@ public class DBSessionFactory {
             return list;
         }
 
-        public int save(Object object) {
+        public int save(Object object) throws SQLException, IllegalAccessException {
             //插入一条数据
+            //生成sql：insert into tb() values()
+            String sql = "insert into %s(%s) values(%s)";
+            StringBuilder columns = new StringBuilder();
+            StringBuilder params = new StringBuilder();
+
+            //获取实体对象的所有字段
+            Field[] fs = object.getClass().getDeclaredFields();
+            for (int i = 0, len = fs.length; i < len; i++) {
+                columns.append(ORMAnnotationUtil.getColumnName(fs[i]));
+                params.append("?");
+
+                if (i != len - 1) {
+                    columns.append(",");
+                    params.append(",");
+                }
+            }
+
+            //生成sql
+            sql = String.format(sql, ORMAnnotationUtil.getTableName(object.getClass()),
+                    columns.toString(), params.toString());
+            System.out.println("Insert SQL: " + sql);
+
+            //创建预处理SQL对象
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            //设置预处理的参数
+            int i = 1;//sql从1开始
+            for (Field f : fs) {
+                //可访问性
+                f.setAccessible(true);
+                Class<?> type = f.getType();
+                if (type == String.class) {
+                    preparedStatement.setString(i, String.valueOf(f.get(object)));
+                } else if (type == int.class || type == Integer.class) {
+                    preparedStatement.setInt(i, f.getInt(object));
+                } else if (type == double.class || type ==Double.class) {
+                    preparedStatement.setDouble(i, f.getDouble(object));
+                }
+                i++;
+            }
+            //执行预处理语句
+            int rows = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            return rows;
+        }
+
+        public int update(Object object) {
+            
         }
         /**
          * 关闭连接
@@ -129,8 +171,17 @@ public class DBSessionFactory {
     public static void main(String[] args) throws Exception {
         //Test
         DBSessionFactory sessionFactory = new DBSessionFactory();
+        DBSession session = sessionFactory.openSession();
         List<User> userList = sessionFactory.openSession().list(User.class);
         System.out.println(userList);
+        User user = new User();
+        user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        user.setUsername("usher");
+        user.setPassword("123456");
+        user.setNickname("usher");
+        user.setPhone("323232");
+
+        System.out.println(session.save(user));
 
     }
 
