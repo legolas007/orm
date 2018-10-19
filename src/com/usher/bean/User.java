@@ -10,7 +10,7 @@ import com.usher.annotation.Table;
  */
 @Table(value = "sys_user")
 public class User {
-    @Column("user_id")
+    @Column(value = "user_id",isId = true)
     private String id;
     private String username;
     @Column("name")

@@ -16,4 +16,6 @@ public @interface Column {
     String value() default "";
 
     boolean isNull() default true;
+
+    boolean isId() default false;//primary key
 }

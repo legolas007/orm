@@ -37,4 +37,13 @@ public class ORMAnnotationUtil {
         }
         return column.value();
     }
+
+    public static boolean isId(Field field) {
+        Column column = field.getAnnotation(Column.class);
+        if (column != null) {
+            //获取字段主键
+            return column.isId();
+        }
+        return false;
+    }
 }

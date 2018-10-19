@@ -150,8 +150,72 @@ public class DBSessionFactory {
             return rows;
         }
 
-        public int update(Object object) {
-            
+        public int update(Object object) throws IllegalAccessException, SQLException {
+            String sql = "update %s set %s where %s";
+            StringBuilder updateColumns = new StringBuilder();
+            String where = "";
+
+            Field[] fs = object.getClass().getDeclaredFields();
+            //更新字段集合
+            List<Field> updateFields = new ArrayList<>();
+            Field f = null;
+            for (int i = 0, len = fs.length; i < len; i++) {
+                f = fs[i];
+                //判断字段是否为主键
+                if (ORMAnnotationUtil.isId(f)) {
+                    f.setAccessible(true);
+                    where = ORMAnnotationUtil.getColumnName(f) + "=";
+                    //判断主键字段类型
+                    if (f.getType() == String.class) {
+                        where += "'" + String.valueOf(f.get(object)) + "'";
+                    } else {
+                        where += f.get(object);
+                    }
+                    continue;
+                }
+                //非主键
+                updateColumns.append(ORMAnnotationUtil.getColumnName(f) + "=?");
+                if (i != len - 1) {
+                    updateColumns.append(",");
+                }
+                //将更新的字段添加到集合
+                updateFields.add(f);
+                f = null;
+            }
+            sql = String.format(sql,
+                    ORMAnnotationUtil.getTableName(object.getClass()),
+                    updateColumns.toString(), where);
+
+            System.out.println("Update SQL:" + sql);
+
+            //执行
+            PreparedStatement preparedStatement =connection.prepareStatement(sql);
+            Class<?> type = null;
+            for (int i = 0, len = updateFields.size(); i < len; i++) {
+                f = updateFields.get(i);
+                f.setAccessible(true);
+
+                type = f.getType();//字段类型
+                if (type == String.class) {
+                    preparedStatement.setString(i + 1, String.valueOf(f.get(object)));
+                } else if (type == int.class || type == Integer.class) {
+                    preparedStatement.setInt(i + 1, f.getInt(object));
+                } else if (type == double.class || type == Double.class) {
+                    preparedStatement.setDouble(i + 1, f.getDouble(object));
+                } else if (type == long.class || type == Long.class) {
+                    preparedStatement.setLong(i + 1, f.getLong(object));
+                } else if (type == float.class || type == Float.class) {
+                    preparedStatement.setFloat(i + 1, f.getFloat(object));
+                } else if (type == Date.class) {
+                    Date date = (Date) f.get(object);
+                    preparedStatement.setDate(i + 1, new java.sql.Date(date.getTime()));
+                }
+            }
+
+            int rows = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            return rows;
         }
         /**
          * 关闭连接
@@ -175,13 +239,14 @@ public class DBSessionFactory {
         List<User> userList = sessionFactory.openSession().list(User.class);
         System.out.println(userList);
         User user = new User();
-        user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+       // user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+        user.setId("1");
         user.setUsername("usher");
-        user.setPassword("123456");
+        user.setPassword("1234567");
         user.setNickname("usher");
         user.setPhone("323232");
 
-        System.out.println(session.save(user));
+        System.out.println(session.update(user));
 
     }
 

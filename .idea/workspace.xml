@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bc4c1d48-ecc9-4ba1-831c-17b1ddcd30cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/usher/annotation/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/usher/annotation/Column.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/usher/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/usher/bean/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/usher/orm/DBSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/usher/orm/DBSessionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,13 +41,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="11" />
-          <entry key="java" value="3162" />
+          <entry key="java" value="4254" />
           <entry key="properties" value="107" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3162" />
+          <entry key="JAVA" value="4254" />
           <entry key="PLAIN_TEXT" value="11" />
           <entry key="Properties" value="107" />
         </counts>
@@ -68,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/usher/bean/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+            <state relative-caret-position="228">
+              <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#834#835#0" expanded="true" />
@@ -82,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+            <state relative-caret-position="343">
+              <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -118,8 +121,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/usher/orm/DBSessionFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="153" selection-end-column="12" />
+            <state relative-caret-position="408">
+              <caret line="231" column="13" lean-forward="true" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,8 +156,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/usher/annotation/Column.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+            <state relative-caret-position="361">
+              <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -189,11 +192,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/usher/bean/user.java" />
         <option value="$PROJECT_DIR$/src/com/usher/annotation/Table.java" />
-        <option value="$PROJECT_DIR$/src/com/usher/annotation/Column.java" />
         <option value="$PROJECT_DIR$/src/com/usher/com/usher/utils/ORMAnnotationUtil.java" />
         <option value="$PROJECT_DIR$/src/com/usher/orm/DBSource.java" />
         <option value="$PROJECT_DIR$/src/dbConfig.properties" />
-        <option value="$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java" />
         <option value="$PROJECT_DIR$/src/test/annotation/TableTest.java" />
         <option value="$PROJECT_DIR$/annotation/TableTest.java" />
         <option value="$PROJECT_DIR$/src/resources/dbConfig.properties" />
@@ -201,7 +202,9 @@
         <option value="$PROJECT_DIR$/src/com/usher/dao/impl/UserDao.java" />
         <option value="$PROJECT_DIR$/src/com/usher/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/com/usher/dao/impl/UserDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/com/usher/annotation/Column.java" />
         <option value="$PROJECT_DIR$/src/com/usher/bean/User.java" />
+        <option value="$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java" />
         <option value="$PROJECT_DIR$/src/com/usher/orm/DBSessionFactory.java" />
       </list>
     </option>
@@ -213,8 +216,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1057" />
-    <option name="width" value="870" />
+    <option name="x" value="952" />
+    <option name="width" value="977" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -242,6 +245,13 @@
               <item name="orm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="usher" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="orm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="orm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="usher" type="462c0819:PsiDirectoryNode" />
+              <item name="annotation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="orm" type="b2602c69:ProjectViewProjectNode" />
@@ -295,7 +305,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539917325754" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539920728440" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="H:/软件/jdbc jar包(oracle+SQLServer+mySql)/mysql-connector-java-5.1.42-bin.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -396,15 +406,15 @@
       <workItem from="1539434388407" duration="5720000" />
       <workItem from="1539481573678" duration="599000" />
       <workItem from="1539593296642" duration="4622000" />
-      <workItem from="1539913493478" duration="3822000" />
+      <workItem from="1539913493478" duration="6540000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14763000" />
+    <option name="totallyTimeSpent" value="17481000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="846" y="0" width="696" height="830" extended-state="0" />
+    <frame x="867" y="0" width="675" height="830" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -413,7 +423,7 @@
       <window_info id="UI Designer" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" weight="0.3292683" />
-      <window_info content_ui="combo" id="Project" order="6" weight="0.47492164" />
+      <window_info content_ui="combo" id="Project" order="6" weight="0.47441217" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32998565" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2840746" />
@@ -479,48 +489,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/usher/annotation/Column.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/usher/bean/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#865#866#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/usher/orm/DBSource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/dbConfig.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -540,10 +508,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/usher/annotation/Column.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="46" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/usher/utils/ORMAnnotationUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="34" column="20" lean-forward="true" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/usher/bean/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#865#866#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/usher/orm/DBSource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/usher/orm/DBSessionFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="153" column="12" selection-start-line="153" selection-start-column="12" selection-end-line="153" selection-end-column="12" />
+        <state relative-caret-position="408">
+          <caret line="231" column="13" lean-forward="true" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
